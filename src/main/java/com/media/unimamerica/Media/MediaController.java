@@ -33,29 +33,26 @@ public class MediaController {
             subtotal += numeros.get(i).numero;
         }
         media = subtotal/quantidade;
-// desvio padrão
+        // desvio padrão
 
         float Difquadrado = 0;
         for (int i = 0; i < numeros.size(); i++) {
-            float diferenca = numeros.get(i).numero - media;
+            float diferenca = numeros.get(i).numero - media;// diferença da média comparando com cada número
             Difquadrado += diferenca * diferenca;
         }
-
         desvio = (float) Math.sqrt(Difquadrado / quantidade);
 
-
         // mediana
-        Collections.sort(numeros, Comparator.comparingDouble(numero -> numero.getNumero()));
-        if (quantidade % 2 == 0) {
+        Collections.sort(numeros, Comparator.comparingDouble(numero -> numero.getNumero())); // colocando os números em ordem crescente
+        if (quantidade % 2 == 0) {// se o número for par, ele vai pegar os dois números do meio
             mediana = (numeros.get(quantidade / 2 - 1).numero + numeros.get(quantidade / 2).numero) / 2;
         } else {
             mediana = numeros.get(quantidade / 2).numero;
         }
 
-        String resultado = "A média é " + media  + " a mediana é " + mediana + " o Desvio padrão é:" + desvio;
+        String resultado = "\n a média é " + media  + " \n a mediana é " + mediana + "\n o desvio padrão é:" + desvio;
 
         return ResponseEntity.ok(resultado );
-
 
     };
     @PostMapping
