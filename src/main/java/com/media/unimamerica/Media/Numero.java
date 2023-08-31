@@ -1,8 +1,12 @@
 package com.media.unimamerica.Media;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+
 
 @Entity
 @Table(name = "numeros", schema = "public")
@@ -15,7 +19,9 @@ public class Numero {
     private Long id;
     @Getter
     @Setter
-    @Column(name = "nome")
-    float numero;
+    @Size(min = 20, max = 20, message = "A quantidade de caracteres é inválida")
+
+    @Column(name = "numeros")
+    private List<Float> numeros;
 
 }
